@@ -27,6 +27,7 @@ def scrape():
     news_title = nasa_soup.find('div', class_='content_title').text
     news_p = nasa_soup.find('div', class_='article_teaser_body').text
     nasa_news = [news_title, news_p]
+    # time.sleep(1)
  
 
 
@@ -46,6 +47,7 @@ def scrape():
 
 
     jpl_image_url = jpl_soup.find('img')['src']
+    # time.sleep(1)
     
 
 
@@ -57,6 +59,7 @@ def scrape():
     twit_soup = BeautifulSoup(twit_html, 'lxml')
 
     mars_weather = twit_soup.find('div', class_='js-tweet-text-container').text
+    # time.sleep(1)
     
 
 
@@ -70,6 +73,7 @@ def scrape():
     html_table = df.to_html()
     html_table.replace('\n', '')
     df.to_html('table.html')
+    # time.sleep(1)
 
 
 #USGS image URL and TItle
@@ -85,7 +89,6 @@ def scrape():
 
 
     for image in images:
-        temp_dict = {}
         group = image.find('div', class_='description')
         title = group.find('h3').text
 
@@ -106,7 +109,6 @@ def scrape():
 
     
     
-
     
 
     all_info["nasa_news"] = nasa_news[0]
