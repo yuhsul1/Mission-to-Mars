@@ -19,9 +19,9 @@
     
         <div class="row">
           <div class="col-md-12">
-              <h3>Latest Mars News</h3>
-                <h4>{{mars.nasa_news}}</h4>
-                    <p>{{mars.nasa_paragraph}}</p>
+            <h3>Latest Mars News</h3>
+            <h4>{{mars.nasa_news}}</h4>
+            <p>{{mars.nasa_paragraph}}</p>
           </div>
         </div>
         <div class ="row">
@@ -30,12 +30,12 @@
                 <img style = "width:720px" src = "{{mars.jpl_img}}">
             </div>
             <div class = "col-md-4">
-                    <h4>Current Weather on Mars</h4>
-                    <p>{{mars.twitter_status}}</p>
-                    <br>
-                    <h4>Mars Facts</h4>
-                    <p>{{mars.space_fact_table | safe}}</p>
-                </div>
+                <h4>Current Weather on Mars</h4>
+                <p>{{mars.twitter_status}}</p>
+                <br>
+                <h4>Mars Facts</h4>
+                <p>{{mars.space_fact_table | safe}}</p>
+            </div>
         </div>
         
         <div class ="row">
@@ -45,18 +45,13 @@
                     <div class = "col-md-6">
                         <div class = "thumbnail">
                             <img src = "{{pic.img_url}}">
-                                <h3>{{pic.title}}</h3>
-                            </div>
+                            <h3>{{pic.title}}</h3>
                         </div>
-
-
-                {% endfor %}
                     </div>
-            
+                {% endfor %}
             </div>
+            
         </div>
-        </div>
-        </div>
-      </div>
+    </div>
 </body>
 </html>
