@@ -4,7 +4,7 @@ import scrape_mars
 
 app = Flask(__name__)
 
-mongo = PyMongo(app,"mongodb://localhost:27017/mars_app")
+mongo = PyMongo(app,"mongodb://yuhsul1:456papa@ds145981.mlab.com:45981/heroku_rcdbkjkn")
 
 @app.route("/scrape")
 def scrape():
