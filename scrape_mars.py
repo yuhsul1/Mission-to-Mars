@@ -8,16 +8,13 @@ def init_browser():
     executable_path = {"executable_path": "chromedriver.exe"}
     return Browser("chrome", **executable_path, headless=False)
 
-
-
-
 def scrape():
     browser = init_browser()
 
     all_info ={}
 
 
-#NASA Info
+    #NASA Info
     nasa_url = 'https://mars.nasa.gov/news/'
     browser.visit(nasa_url)
     time.sleep(1)
@@ -29,15 +26,13 @@ def scrape():
     nasa_news = [news_title, news_p]
     # time.sleep(1)
  
-
-
-
-#JPL Feature Image Extraction
+    #JPL Feature Image Extraction
+    #Side note: I noticed that without a pause between each clicks, there are sometimes issue with interacting with the page.
     jpl_url = 'https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars'
     browser.visit(jpl_url)
     time.sleep(1)
     browser.click_link_by_partial_text('FULL IMAGE')
-    time.sleep(1)
+    time.sleep(2)
     browser.click_link_by_partial_text('more info')
     time.sleep(1)
     browser.click_link_by_partial_href('/spaceimages/images/largesize/')
@@ -48,11 +43,8 @@ def scrape():
 
     jpl_image_url = jpl_soup.find('img')['src']
     # time.sleep(1)
-    
 
-
-
-#Twitter Status Update
+    #Twitter Status Update
     twit_url = 'https://twitter.com/marswxreport?lang=en'
     browser.visit(twit_url)
     twit_html = browser.html
@@ -61,10 +53,7 @@ def scrape():
     mars_weather = twit_soup.find('div', class_='js-tweet-text-container').text
     # time.sleep(1)
     
-
-
-
-#Space facts Table
+    #Space facts Table
     space_url = "https://space-facts.com/mars/"
     tables = pd.read_html(space_url)
     df=tables[0]
@@ -73,10 +62,10 @@ def scrape():
     html_table = df.to_html()
     html_table.replace('\n', '')
     df.to_html('table.html')
-    # time.sleep(1)
+    time.sleep(1)
 
 
-#USGS image URL and TItle
+    #USGS image URL and TItle
     usgs_url = "https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars"
     browser.visit(usgs_url)
     time.sleep(1)
@@ -99,6 +88,8 @@ def scrape():
         browser.visit(image_url)
         time.sleep(1)
         
+
+        #reach the destination page and use soup again to extract html text.
         html = browser.html
         soup=BeautifulSoup(html, "lxml")
         downloads = soup.find("div", class_="downloads")
@@ -110,7 +101,7 @@ def scrape():
     
     
     
-
+    #Store all info into a python dictionary.
     all_info["nasa_news"] = nasa_news[0]
     all_info["nasa_paragraph"] = nasa_news[1]
     all_info["jpl_img"] = jpl_image_url
@@ -118,7 +109,7 @@ def scrape():
     all_info["space_fact_table"] = html_table
     all_info["usgs_img"] = pic_list
 
-
+    #Close the chrome driver browser
     browser.quit()
     return all_info 
 
