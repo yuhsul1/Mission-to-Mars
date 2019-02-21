@@ -19,7 +19,7 @@ def init_browser():
     return Browser('chrome', 
                     executable_path="chromedriver", 
                     options=chrome_options, 
-                    headless=True) 
+                    headless=False) 
 
 
 def scrape():
