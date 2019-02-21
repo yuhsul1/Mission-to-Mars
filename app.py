@@ -3,11 +3,11 @@ from flask_pymongo import PyMongo
 import scrape_mars
 
 app = Flask(__name__)
-
-mongo = PyMongo(app,"mongodb://yuhsul1:456papa@ds145981.mlab.com:45981/heroku_rcdbkjkn")
+app.config["MONGO_URI"] = "mongodb://yuhsul1:456papa@ds145981.mlab.com:45981/heroku_rcdbkjkn"
+mongo = PyMongo(app)
 
 @app.route("/scrape")
-def scrape():
+def scraper():
     mars = mongo.db.mars 
     mars_data = scrape_mars.scrape()
     mars.update(
