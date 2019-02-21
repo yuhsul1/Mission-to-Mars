@@ -5,21 +5,21 @@ from splinter import Browser
 from selenium import webdriver 
 import os
 
-# def init_browser():
-#     # @NOTE: Replace the path with your actual path to the chromedriver
-#     executable_path = {"executable_path": "/app/.chromedriver/bin/chromedriver"}
-#     return Browser("chrome", **executable_path, headless=True)
+def init_browser():
+    # @NOTE: Replace the path with your actual path to the chromedriver
+    executable_path = {"executable_path": "/app/.chromedriver/bin/chromedriver"}
+    return Browser("chrome", **executable_path, headless=True)
 
-def init_browser(): 
-    driver_path = os.environ.get('GOOGLE_CHROME_SHIM', None) 
-    chrome_options = webdriver.ChromeOptions() 
-    chrome_options.binary_location = driver_path 
-    chrome_options.add_argument('no-sandbox') 
-    chrome_options.add_argument('--headless') 
-    return Browser('chrome', 
-                    executable_path="chromedriver", 
-                    options=chrome_options, 
-                    headless=False) 
+# def init_browser(): 
+#     driver_path = os.environ.get('GOOGLE_CHROME_SHIM', None) 
+#     chrome_options = webdriver.ChromeOptions() 
+#     chrome_options.binary_location = driver_path 
+#     chrome_options.add_argument('no-sandbox') 
+#     chrome_options.add_argument('--headless') 
+#     return Browser('chrome', 
+#                     executable_path="chromedriver", 
+#                     options=chrome_options, 
+#                     headless=False) 
 
 
 def scrape():
